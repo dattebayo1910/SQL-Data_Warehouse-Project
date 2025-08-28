@@ -1,107 +1,65 @@
-🏛️ Data Warehouse on Medallion Architecture
-📌 Overview
+## 🏛️ Data Warehouse on Medallion Architecture
+## 📌 Overview
 
 This project demonstrates a Data Warehouse built using the Medallion Architecture layered approach (Bronze → Silver → Gold) on Massively Parallel Processing (MPP) systems with SQL Server PDW / Azure Synapse.
-
 It simulates real-world ETL flows, enforces data quality checks, and leverages star schema modeling for analytics.
 
-⚡ Key Features
+## ⚡ Key Features
 
-Layered Medallion Architecture:
+### Layered Medallion Architecture:
 
 Bronze → Raw ingestion from CRM & ERP sources
-
 Silver → Cleansed and standardized data
-
 Gold → Curated star schema for BI & reporting
-
 Data Quality Checks implemented at Silver and Gold stages.
-
 Scalable Queries using MPP parallelism in Synapse/PDW.
-
 ETL Simulation with SQL-based stored procedures.
 
-## 📂 Repository Structure
-
-datasets/
-source_crm/
-source_erp/
-
-docs/
-
-scripts/
-bronze/
-ddl_bronze.sql
-proc_load_bronze.sql
-silver/
-ddl_silver.sql
-proc_load_silver.sql
-gold/
-ddl_gold.sql
-tests/
-quality_checks_silver.sql
-quality_checks_gold.sql
-init_database.sql
-
-🚀 Workflow (Medallion Layers)
+## 🚀 Workflow (Medallion Layers)
 
 Bronze Layer
-
 Ingests raw data from multiple sources (CRM, ERP).
-
 Scripts: ddl_bronze.sql, proc_load_bronze.sql.
 
 Silver Layer
-
 Cleanses, standardizes, and enriches data.
-
 Scripts: ddl_silver.sql, proc_load_silver.sql.
-
 Quality checks: quality_checks_silver.sql.
 
 Gold Layer
-
 Curates analytical-ready Star Schema with Fact & Dimension tables.
-
 Scripts: ddl_gold.sql.
-
 Quality checks: quality_checks_gold.sql.
 
-📊 Example Query
+## 📊 Example Query
 SELECT d.Year, p.Category, SUM(f.SalesAmount) AS TotalSales
 FROM FactSales f
 JOIN DimDate d ON f.DateKey = d.DateKey
 JOIN DimProduct p ON f.ProductKey = p.ProductKey
 GROUP BY d.Year, p.Category;
 
-✅ Data Quality
+## ✅ Data Quality
 
 Ensures referential integrity between Fact & Dimension tables.
-
 Validates data completeness and uniqueness.
-
 Checks for duplicate records and null values.
 
-🛠️ Tech Stack
+## 🛠️ Tech Stack
 
 SQL Server PDW / Azure Synapse Analytics (MPP Engine)
-
 Star Schema Modeling (Fact & Dimension tables)
-
 SQL-based ETL (stored procedures, transformations, quality checks)
 
-📖 Learnings
+## 📖 Learnings
 
 Medallion-based architectures improve scalability & data governance.
-
 MPP queries provide massive performance gains over traditional warehouses.
-
 Data quality enforcement is key to trustworthy analytics.
 
-🤝 Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please fork the repo, create a feature branch, and submit a pull request.
 
-📜 License
+## 📜 License
 
 This project is licensed under the MIT License.
