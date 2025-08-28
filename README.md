@@ -21,32 +21,27 @@ Scalable Queries using MPP parallelism in Synapse/PDW.
 
 ETL Simulation with SQL-based stored procedures.
 
-📂 Repository Structure
-├── datasets/
-│   ├── source_crm/             # CRM source data samples
-│   ├── source_erp/             # ERP source data samples
-│
-├── docs/                       # Documentation & diagrams
-│
-├── scripts/
-│   ├── bronze/
-│   │   ├── ddl_bronze.sql      # DDL for Bronze layer tables
-│   │   ├── proc_load_bronze.sql # Procedures to load raw data
-│   │
-│   ├── silver/
-│   │   ├── ddl_silver.sql      # DDL for Silver layer tables
-│   │   ├── proc_load_silver.sql # Transformation & loading
-│   │
-│   ├── gold/
-│   │   ├── ddl_gold.sql        # DDL for Gold (Star Schema) tables
-│   │
-│   ├── tests/
-│   │   ├── quality_checks_silver.sql # Data quality checks for Silver
-│   │   ├── quality_checks_gold.sql   # Data quality checks for Gold
-│   │
-│   ├── init_database.sql       # Initialize schemas & environment
-│
-└── README.md
+## 📂 Repository Structure
+
+datasets/
+source_crm/
+source_erp/
+
+docs/
+
+scripts/
+bronze/
+ddl_bronze.sql
+proc_load_bronze.sql
+silver/
+ddl_silver.sql
+proc_load_silver.sql
+gold/
+ddl_gold.sql
+tests/
+quality_checks_silver.sql
+quality_checks_gold.sql
+init_database.sql
 
 🚀 Workflow (Medallion Layers)
 
