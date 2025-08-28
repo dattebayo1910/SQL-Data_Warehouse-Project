@@ -1,35 +1,27 @@
 🏛️ Data Warehouse on Medallion Architecture
 📌 Overview
 
-This project demonstrates the design and implementation of a scalable Data Warehouse built on the Medallion Architecture using Massively Parallel Processing (MPP) with SQL Server PDW/Synapse.
+This project demonstrates a Data Warehouse built using the Medallion Architecture layered approach (Bronze → Silver → Gold) on Massively Parallel Processing (MPP) systems with SQL Server PDW / Azure Synapse.
 
-The solution is designed to handle large-scale analytics workloads, showcasing efficient data modeling, ETL flows, and querying strategies.
+It simulates real-world ETL flows, enforces data quality checks, and leverages star schema modeling for analytics.
 
-⚡ Key Highlights
+⚡ Key Features
 
-Medallion Architecture: Implemented a layered data approach (Bronze, Silver, Gold) for structured and incremental data refinement.
+Layered Medallion Architecture:
 
-Scalable MPP System: Leveraged Madison (MPP) architecture for high-performance distributed query execution.
+Bronze → Raw ingestion from CRM & ERP sources
 
-Data Modeling: Designed Star Schema with Fact and Dimension tables to optimize analytical queries.
+Silver → Cleansed and standardized data
 
-Parallel Querying: Used SQL Server PDW/Synapse for distributed queries across compute nodes.
+Gold → Curated star schema for BI & reporting
 
-ETL Simulation: Implemented data loading and transformation logic to mimic real-world ETL pipelines.
+Data Quality Checks implemented at Silver and Gold stages.
 
-🛠️ Tech Stack
+Scalable Queries using MPP parallelism in Synapse/PDW.
 
-Data Warehouse Platform: SQL Server PDW / Azure Synapse Analytics
+ETL Simulation with SQL-based stored procedures.
 
-Architecture: Medallion (Bronze → Silver → Gold layers)
-
-Modeling: Star Schema (Fact + Dimension tables)
-
-ETL: SQL-based transformations & loading logic
-
-Query Engine: MPP for distributed parallel queries
-
-📂 Project Structure
+📂 Repository Structure
 ├── datasets/
 │   ├── source_crm/             # CRM source data samples
 │   ├── source_erp/             # ERP source data samples
@@ -56,40 +48,60 @@ Query Engine: MPP for distributed parallel queries
 │
 └── README.md
 
+🚀 Workflow (Medallion Layers)
 
-🚀 How It Works
+Bronze Layer
 
-Bronze Layer: Load raw data into staging tables.
+Ingests raw data from multiple sources (CRM, ERP).
 
-Silver Layer: Apply transformation logic to clean, normalize, and enrich data.
+Scripts: ddl_bronze.sql, proc_load_bronze.sql.
 
-Gold Layer: Curate analytical data models in a Star Schema for business intelligence use cases.
+Silver Layer
 
-Query Execution: Run distributed queries on Synapse/PDW leveraging parallelism for faster results.
+Cleanses, standardizes, and enriches data.
 
-📊 Example Use Case
+Scripts: ddl_silver.sql, proc_load_silver.sql.
 
-Fact Table: FactSales – stores transactional sales data.
+Quality checks: quality_checks_silver.sql.
 
-Dimension Tables: DimCustomer, DimProduct, DimDate, DimStore.
+Gold Layer
 
-Example Query:
+Curates analytical-ready Star Schema with Fact & Dimension tables.
 
+Scripts: ddl_gold.sql.
+
+Quality checks: quality_checks_gold.sql.
+
+📊 Example Query
 SELECT d.Year, p.Category, SUM(f.SalesAmount) AS TotalSales
 FROM FactSales f
 JOIN DimDate d ON f.DateKey = d.DateKey
 JOIN DimProduct p ON f.ProductKey = p.ProductKey
 GROUP BY d.Year, p.Category;
 
+✅ Data Quality
+
+Ensures referential integrity between Fact & Dimension tables.
+
+Validates data completeness and uniqueness.
+
+Checks for duplicate records and null values.
+
+🛠️ Tech Stack
+
+SQL Server PDW / Azure Synapse Analytics (MPP Engine)
+
+Star Schema Modeling (Fact & Dimension tables)
+
+SQL-based ETL (stored procedures, transformations, quality checks)
+
 📖 Learnings
 
-Designing Medallion-based architectures improves scalability & maintainability.
+Medallion-based architectures improve scalability & data governance.
 
-MPP architectures like Madison enable high-performance query execution.
+MPP queries provide massive performance gains over traditional warehouses.
 
-Star schemas remain one of the most effective models for analytical queries.
-
-Simulated ETL pipelines help in understanding real-world data flows.
+Data quality enforcement is key to trustworthy analytics.
 
 🤝 Contributing
 
